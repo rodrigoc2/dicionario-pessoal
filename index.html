@@ -8,198 +8,100 @@
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --bg: #f7f4ef;
-    --surface: #ffffff;
-    --surface2: #f0ece4;
-    --border: #e2ddd4;
-    --text: #1a1714;
-    --text2: #6b6560;
-    --text3: #a09a93;
-    --accent: #2d5a3d;
-    --accent-light: #e8f0ea;
-    --blue: #1e3a5f;
-    --blue-light: #e6edf5;
-    --purple: #4a2d6b;
-    --purple-light: #f0ebf7;
-    --danger: #8b2020;
-    --danger-light: #fdf0f0;
-    --radius: 10px;
-    --radius-lg: 16px;
+    --bg: #f7f4ef; --surface: #ffffff; --surface2: #f0ece4;
+    --border: #e2ddd4; --text: #1a1714; --text2: #6b6560; --text3: #a09a93;
+    --accent: #2d5a3d; --accent-light: #e8f0ea;
+    --blue: #1e3a5f; --blue-light: #e6edf5;
+    --purple: #4a2d6b; --purple-light: #f0ebf7;
+    --danger: #8b2020; --danger-light: #fdf0f0;
+    --radius: 10px; --radius-lg: 16px;
   }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 15px; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    font-size: 15px;
-  }
-
-  /* HEADER */
-  header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    position: sticky; top: 0; z-index: 100;
-  }
-  .header-inner {
-    max-width: 860px; margin: 0 auto;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 60px;
-  }
-  .logo { display: flex; align-items: center; gap: 10px; }
-  .logo-icon {
-    width: 32px; height: 32px; background: var(--accent);
-    border-radius: 8px; display: flex; align-items: center; justify-content: center;
-    font-family: 'Lora', serif; color: white; font-size: 16px; font-weight: 600;
-  }
-  .logo-text { font-family: 'Lora', serif; font-size: 17px; font-weight: 600; color: var(--text); }
-  .header-stats { display: flex; gap: 20px; }
+  header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 1.25rem; position: sticky; top: 0; z-index: 100; }
+  .header-inner { max-width: 860px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 12px; }
+  .logo { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .logo-icon { width: 30px; height: 30px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'Lora', serif; color: white; font-size: 15px; font-weight: 600; }
+  .logo-text { font-family: 'Lora', serif; font-size: 16px; font-weight: 600; color: var(--text); white-space: nowrap; }
+  .header-stats { display: flex; gap: 14px; }
   .hstat { text-align: center; }
-  .hstat-num { font-size: 16px; font-weight: 500; color: var(--text); line-height: 1; }
-  .hstat-label { font-size: 11px; color: var(--text3); margin-top: 2px; }
+  .hstat-num { font-size: 15px; font-weight: 500; color: var(--text); line-height: 1; }
+  .hstat-label { font-size: 10px; color: var(--text3); margin-top: 2px; }
 
-  /* MAIN */
-  main { max-width: 860px; margin: 0 auto; padding: 2rem; }
+  main { max-width: 860px; margin: 0 auto; padding: 1.25rem; }
 
-  /* TOOLBAR */
-  .toolbar {
-    display: flex; gap: 10px; margin-bottom: 1.5rem; flex-wrap: wrap; align-items: center;
-  }
-  .search-wrap { flex: 1; min-width: 200px; position: relative; }
-  .search-wrap svg {
-    position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
-    width: 16px; height: 16px; color: var(--text3); pointer-events: none;
-  }
-  .search-input {
-    width: 100%; padding: 9px 12px 9px 36px;
-    border: 1px solid var(--border); border-radius: var(--radius);
-    background: var(--surface); color: var(--text); font-family: 'DM Sans', sans-serif;
-    font-size: 14px; transition: border-color 0.15s;
-  }
+  .toolbar { display: flex; gap: 8px; margin-bottom: 1.25rem; }
+  .search-wrap { flex: 1; position: relative; min-width: 0; }
+  .search-wrap svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); width: 15px; height: 15px; color: var(--text3); pointer-events: none; }
+  .search-input { width: 100%; padding: 9px 12px 9px 34px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; transition: border-color 0.15s; }
   .search-input:focus { outline: none; border-color: var(--accent); }
   .search-input::placeholder { color: var(--text3); }
 
-  .btn {
-    padding: 9px 18px; border-radius: var(--radius); font-family: 'DM Sans', sans-serif;
-    font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid var(--border);
-    background: var(--surface); color: var(--text); transition: all 0.15s; white-space: nowrap;
-  }
+  .btn { padding: 9px 16px; border-radius: var(--radius); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid var(--border); background: var(--surface); color: var(--text); transition: all 0.15s; white-space: nowrap; }
   .btn:hover { background: var(--surface2); }
+  .btn:disabled { opacity: 0.6; cursor: not-allowed; }
   .btn-primary { background: var(--accent); color: white; border-color: var(--accent); }
-  .btn-primary:hover { background: #245030; border-color: #245030; }
-  .btn-sm { padding: 5px 12px; font-size: 12px; }
+  .btn-primary:hover:not(:disabled) { background: #245030; border-color: #245030; }
+  .btn-sm { padding: 5px 11px; font-size: 12px; }
   .btn-danger { color: var(--danger); border-color: #e8c0c0; }
   .btn-danger:hover { background: var(--danger-light); }
 
-  /* TABS */
-  .tabs { display: flex; gap: 6px; margin-bottom: 1.5rem; flex-wrap: wrap; }
-  .tab {
-    padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 400;
-    cursor: pointer; border: 1px solid var(--border); background: var(--surface);
-    color: var(--text2); transition: all 0.15s;
-  }
+  .tabs { display: flex; gap: 6px; margin-bottom: 1.25rem; flex-wrap: wrap; }
+  .tab { padding: 6px 13px; border-radius: 20px; font-size: 13px; cursor: pointer; border: 1px solid var(--border); background: var(--surface); color: var(--text2); transition: all 0.15s; }
   .tab:hover { border-color: #c0bab2; }
   .tab.active-all { background: var(--text); color: white; border-color: var(--text); }
   .tab.active-pt { background: var(--accent); color: white; border-color: var(--accent); }
   .tab.active-en-word { background: var(--blue); color: white; border-color: var(--blue); }
   .tab.active-en-expr { background: var(--purple); color: white; border-color: var(--purple); }
 
-  /* FORM */
-  .form-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.5rem;
-    animation: slideDown 0.2s ease;
-  }
+  .form-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1.25rem; animation: slideDown 0.2s ease; }
   @keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
-  .form-card h3 { font-family: 'Lora', serif; font-size: 16px; font-weight: 600; margin-bottom: 1rem; color: var(--text); }
-  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-  .form-group { display: flex; flex-direction: column; gap: 5px; }
-  .form-group label { font-size: 12px; font-weight: 500; color: var(--text2); letter-spacing: 0.03em; text-transform: uppercase; }
-  .form-group input, .form-group select, .form-group textarea {
-    padding: 8px 11px; border: 1px solid var(--border); border-radius: var(--radius);
-    font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text);
-    background: var(--surface); transition: border-color 0.15s;
-  }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-    outline: none; border-color: var(--accent);
-  }
-  .form-group textarea { resize: vertical; min-height: 72px; line-height: 1.5; }
-  .form-group input.error { border-color: var(--danger); }
-  .form-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+  .form-card h3 { font-family: 'Lora', serif; font-size: 16px; font-weight: 600; margin-bottom: 1rem; }
 
-  /* ENTRIES */
+  .form-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .form-group label { font-size: 11px; font-weight: 500; color: var(--text2); letter-spacing: 0.04em; text-transform: uppercase; }
+  .form-group input, .form-group select, .form-group textarea { padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--radius); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); background: var(--surface); transition: border-color 0.15s; width: 100%; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
+  .form-group textarea { resize: vertical; min-height: 68px; line-height: 1.5; }
+  .form-group input.error, .form-group textarea.error { border-color: var(--danger); }
+  .form-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+
   .entries { display: flex; flex-direction: column; gap: 10px; }
-
-  .entry-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius-lg); padding: 1.25rem 1.5rem;
-    transition: box-shadow 0.15s, border-color 0.15s;
-    animation: fadeIn 0.2s ease;
-  }
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .entry-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.1rem 1.25rem; transition: box-shadow 0.15s, border-color 0.15s; animation: fadeIn 0.2s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
   .entry-card:hover { border-color: #c8c2b8; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
-
-  .entry-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-  .entry-term { font-family: 'Lora', serif; font-size: 18px; font-weight: 600; color: var(--text); line-height: 1.3; }
-  .badge {
-    font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 20px;
-    white-space: nowrap; flex-shrink: 0; letter-spacing: 0.02em;
-  }
+  .entry-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+  .entry-term { font-family: 'Lora', serif; font-size: 17px; font-weight: 600; color: var(--text); line-height: 1.3; }
+  .badge { font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }
   .badge-pt { background: var(--accent-light); color: var(--accent); }
   .badge-en-word { background: var(--blue-light); color: var(--blue); }
   .badge-en-expr { background: var(--purple-light); color: var(--purple); }
-
-  .entry-meaning {
-    font-size: 14px; color: var(--text2); margin-top: 8px; line-height: 1.65;
-  }
-  .entry-example {
-    font-family: 'Lora', serif; font-style: italic;
-    font-size: 13px; color: var(--text3); margin-top: 8px; line-height: 1.6;
-    padding-left: 12px; border-left: 2px solid var(--border);
-  }
-  .entry-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; flex-wrap: wrap; gap: 8px; }
+  .entry-meaning { font-size: 14px; color: var(--text2); margin-top: 7px; line-height: 1.65; }
+  .entry-example { font-family: 'Lora', serif; font-style: italic; font-size: 13px; color: var(--text3); margin-top: 8px; line-height: 1.6; padding-left: 11px; border-left: 2px solid var(--border); }
+  .entry-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; flex-wrap: wrap; gap: 8px; }
   .entry-tags { display: flex; gap: 5px; flex-wrap: wrap; }
-  .tag {
-    font-size: 11px; color: var(--text3); background: var(--surface2);
-    border: 1px solid var(--border); padding: 2px 8px; border-radius: 20px;
-  }
+  .tag { font-size: 11px; color: var(--text3); background: var(--surface2); border: 1px solid var(--border); padding: 2px 8px; border-radius: 20px; }
   .entry-actions { display: flex; gap: 6px; }
 
-  /* EMPTY */
-  .empty {
-    text-align: center; padding: 4rem 1rem; color: var(--text3);
-  }
-  .empty-icon { font-size: 40px; margin-bottom: 12px; opacity: 0.4; }
+  .empty { text-align: center; padding: 4rem 1rem; color: var(--text3); }
+  .empty-icon { font-size: 36px; margin-bottom: 10px; opacity: 0.4; }
   .empty p { font-size: 14px; }
 
-  /* TOAST */
-  .toast {
-    position: fixed; bottom: 24px; right: 24px; z-index: 999;
-    background: var(--text); color: white; padding: 10px 18px;
-    border-radius: var(--radius); font-size: 13px; font-weight: 400;
-    opacity: 0; transform: translateY(8px); transition: all 0.25s;
-    pointer-events: none;
-  }
-  .toast.show { opacity: 1; transform: translateY(0); }
+  .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(10px); z-index: 999; background: var(--text); color: white; padding: 10px 20px; border-radius: var(--radius); font-size: 13px; opacity: 0; transition: all 0.25s; pointer-events: none; white-space: nowrap; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   .toast.error { background: var(--danger); }
+  .toast.success { background: var(--accent); }
 
-  /* LOADING */
   .loading { text-align: center; padding: 3rem; color: var(--text3); font-size: 14px; }
-  .spinner {
-    width: 28px; height: 28px; border: 2px solid var(--border);
-    border-top-color: var(--accent); border-radius: 50%;
-    animation: spin 0.7s linear infinite; margin: 0 auto 12px;
-  }
+  .spinner { width: 26px; height: 26px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto 10px; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  @media (max-width: 600px) {
-    main { padding: 1rem; }
-    header { padding: 0 1rem; }
-    .form-grid { grid-template-columns: 1fr; }
-    .header-stats { gap: 12px; }
+  @media (max-width: 520px) {
+    .header-stats { gap: 10px; }
+    .hstat-label { display: none; }
+    .form-row { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -239,11 +141,11 @@
   <div id="formWrap" style="display:none;">
     <div class="form-card">
       <h3 id="formTitle">Nova entrada</h3>
-      <div class="form-grid">
-        <div class="form-group" style="grid-column: span 2;">
-          <label>Termo / Expressão *</label>
-          <input type="text" id="fTerm" placeholder="Ex: dar o fora, to bite the bullet" />
-        </div>
+      <div class="form-group">
+        <label>Termo / Expressão *</label>
+        <input type="text" id="fTerm" placeholder="Ex: dar o fora, to bite the bullet" />
+      </div>
+      <div class="form-row">
         <div class="form-group">
           <label>Categoria *</label>
           <select id="fType">
@@ -254,16 +156,16 @@
         </div>
         <div class="form-group">
           <label>Tags (separadas por vírgula)</label>
-          <input type="text" id="fTags" placeholder="Ex: informal, trabalho, gíria" />
+          <input type="text" id="fTags" placeholder="Ex: informal, trabalho" />
         </div>
-        <div class="form-group" style="grid-column: span 2;">
-          <label>Significado / Definição *</label>
-          <textarea id="fMeaning" placeholder="O que significa? Em que contexto se usa?"></textarea>
-        </div>
-        <div class="form-group" style="grid-column: span 2;">
-          <label>Exemplo de uso (opcional)</label>
-          <textarea id="fExample" placeholder="Uma frase de exemplo..."></textarea>
-        </div>
+      </div>
+      <div class="form-group">
+        <label>Significado / Definição *</label>
+        <textarea id="fMeaning" placeholder="O que significa? Em que contexto se usa?"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Exemplo de uso (opcional)</label>
+        <textarea id="fExample" placeholder="Uma frase de exemplo..."></textarea>
       </div>
       <div class="form-actions">
         <button class="btn" onclick="cancelForm()">Cancelar</button>
@@ -286,19 +188,24 @@
   let editingId = null;
 
   async function api(method, path, body) {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
-      method,
-      headers: {
-        'apikey': SUPABASE_KEY,
-        'Authorization': `Bearer ${SUPABASE_KEY}`,
-        'Content-Type': 'application/json',
-        'Prefer': method === 'POST' ? 'return=representation' : 'return=representation'
-      },
+    const headers = {
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    };
+    if (method === 'POST' || method === 'PATCH') {
+      headers['Prefer'] = 'return=representation';
+    }
+    const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
+      method: method,
+      headers: headers,
       body: body ? JSON.stringify(body) : undefined
     });
     if (!res.ok) {
       const err = await res.text();
-      throw new Error(err);
+      console.error('Supabase error:', res.status, err);
+      throw new Error('Status ' + res.status + ': ' + err);
     }
     const text = await res.text();
     return text ? JSON.parse(text) : null;
@@ -312,7 +219,7 @@
       updateStats();
       renderEntries();
     } catch (e) {
-      showToast('Erro ao carregar entradas. Verifique a conexão.', true);
+      showToast('Erro ao carregar. Verifique a conexão.', 'error');
       document.getElementById('entriesList').innerHTML = '<div class="empty"><div class="empty-icon">⚠️</div><p>Não foi possível conectar ao banco de dados.</p></div>';
     }
   }
@@ -327,7 +234,7 @@
   function setTab(tab) {
     currentTab = tab;
     document.querySelectorAll('.tab').forEach(t => t.className = 'tab');
-    document.getElementById('tab-' + tab).classList.add('tab', 'active-' + tab);
+    document.getElementById('tab-' + tab).className = 'tab active-' + tab;
     renderEntries();
   }
 
@@ -341,35 +248,17 @@
       (e.example || '').toLowerCase().includes(search) ||
       (e.tags || []).some(t => t.toLowerCase().includes(search))
     );
-
     const el = document.getElementById('entriesList');
     if (list.length === 0) {
-      el.innerHTML = `<div class="empty"><div class="empty-icon">📖</div><p>${search || currentTab !== 'all' ? 'Nenhuma entrada encontrada.' : 'Seu dicionário está vazio. Adicione a primeira entrada!'}</p></div>`;
+      el.innerHTML = '<div class="empty"><div class="empty-icon">📖</div><p>' + (search || currentTab !== 'all' ? 'Nenhuma entrada encontrada.' : 'Seu dicionário está vazio. Adicione a primeira entrada!') + '</p></div>';
       return;
     }
-
     el.innerHTML = list.map(e => {
-      const badgeClass = e.type === 'pt-expr' ? 'badge-pt' : e.type === 'en-word' ? 'badge-en-word' : 'badge-en-expr';
-      const badgeLabel = e.type === 'pt-expr' ? 'Expressão PT' : e.type === 'en-word' ? 'Palavra EN' : 'Expressão EN';
-      const tags = (e.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
-      const example = e.example ? `<div class="entry-example">"${e.example}"</div>` : '';
-      return `
-        <div class="entry-card">
-          <div class="entry-top">
-            <div class="entry-term">${e.term}</div>
-            <span class="badge ${badgeClass}">${badgeLabel}</span>
-          </div>
-          <div class="entry-meaning">${e.meaning}</div>
-          ${example}
-          <div class="entry-footer">
-            <div class="entry-tags">${tags}</div>
-            <div class="entry-actions">
-              <button class="btn btn-sm" onclick="editEntry('${e.id}')">Editar</button>
-              <button class="btn btn-sm btn-danger" onclick="deleteEntry('${e.id}')">Remover</button>
-            </div>
-          </div>
-        </div>
-      `;
+      const bc = e.type === 'pt-expr' ? 'badge-pt' : e.type === 'en-word' ? 'badge-en-word' : 'badge-en-expr';
+      const bl = e.type === 'pt-expr' ? 'Expressão PT' : e.type === 'en-word' ? 'Palavra EN' : 'Expressão EN';
+      const tags = (e.tags || []).map(t => '<span class="tag">' + t + '</span>').join('');
+      const example = e.example ? '<div class="entry-example">"' + e.example + '"</div>' : '';
+      return '<div class="entry-card"><div class="entry-top"><div class="entry-term">' + e.term + '</div><span class="badge ' + bc + '">' + bl + '</span></div><div class="entry-meaning">' + e.meaning + '</div>' + example + '<div class="entry-footer"><div class="entry-tags">' + tags + '</div><div class="entry-actions"><button class="btn btn-sm" onclick="editEntry(\'' + e.id + '\')">Editar</button><button class="btn btn-sm btn-danger" onclick="deleteEntry(\'' + e.id + '\')">Remover</button></div></div></div>';
     }).join('');
   }
 
@@ -392,7 +281,7 @@
       document.getElementById('fTerm').classList.remove('error');
       document.getElementById('fMeaning').classList.remove('error');
       document.getElementById('fTerm').focus();
-      wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     } else {
       cancelForm();
     }
@@ -415,7 +304,7 @@
     document.getElementById('fExample').value = e.example || '';
     document.getElementById('fTags').value = (e.tags || []).join(', ');
     document.getElementById('saveBtn').textContent = 'Salvar alterações';
-    document.getElementById('formWrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('formWrap').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
   async function saveEntry() {
@@ -426,30 +315,34 @@
     const tagsRaw = document.getElementById('fTags').value.trim();
     const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [];
 
-    let valid = true;
     document.getElementById('fTerm').classList.toggle('error', !term);
     document.getElementById('fMeaning').classList.toggle('error', !meaning);
-    if (!term || !meaning) return;
+    if (!term || !meaning) { showToast('Preencha os campos obrigatórios.', 'error'); return; }
 
     const btn = document.getElementById('saveBtn');
+    const originalText = btn.textContent;
     btn.textContent = 'Salvando...';
     btn.disabled = true;
 
     try {
       const payload = { term, type, meaning, example: example || null, tags };
       if (editingId) {
-        await api('PATCH', `entries?id=eq.${editingId}`, payload);
-        showToast('Entrada atualizada!');
+        const updated = await api('PATCH', 'entries?id=eq.' + editingId, payload);
+        const idx = allEntries.findIndex(e => e.id === editingId);
+        if (idx !== -1 && updated && updated[0]) allEntries[idx] = updated[0];
+        showToast('Entrada atualizada!', 'success');
       } else {
-        await api('POST', 'entries', payload);
-        showToast('Entrada adicionada!');
+        const created = await api('POST', 'entries', payload);
+        if (created && created[0]) allEntries.unshift(created[0]);
+        showToast('Entrada adicionada!', 'success');
       }
       cancelForm();
-      await loadEntries();
+      updateStats();
+      renderEntries();
     } catch (e) {
-      showToast('Erro ao salvar. Tente novamente.', true);
-    } finally {
-      btn.textContent = editingId ? 'Salvar alterações' : 'Salvar entrada';
+      console.error(e);
+      showToast('Erro ao salvar: ' + e.message, 'error');
+      btn.textContent = originalText;
       btn.disabled = false;
     }
   }
@@ -457,18 +350,20 @@
   async function deleteEntry(id) {
     if (!confirm('Remover esta entrada?')) return;
     try {
-      await api('DELETE', `entries?id=eq.${id}`);
-      showToast('Entrada removida.');
-      await loadEntries();
+      await api('DELETE', 'entries?id=eq.' + id);
+      allEntries = allEntries.filter(e => e.id !== id);
+      updateStats();
+      renderEntries();
+      showToast('Entrada removida.', 'success');
     } catch (e) {
-      showToast('Erro ao remover.', true);
+      showToast('Erro ao remover.', 'error');
     }
   }
 
-  function showToast(msg, isError = false) {
+  function showToast(msg, type) {
     const t = document.getElementById('toast');
     t.textContent = msg;
-    t.className = 'toast' + (isError ? ' error' : '');
+    t.className = 'toast ' + (type || '');
     t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 3000);
   }
