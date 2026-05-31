@@ -1,0 +1,2 @@
+# dicionario-pessoal
+app dicionario
