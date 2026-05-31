@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Meu Dicionário Pessoal</title>
+<title>Meu Dicionário Pessoal2</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 <style>
@@ -278,6 +278,7 @@
       document.getElementById('fExample').value = '';
       document.getElementById('fTags').value = '';
       document.getElementById('saveBtn').textContent = 'Salvar entrada';
+      document.getElementById('saveBtn').disabled = false;
       document.getElementById('fTerm').classList.remove('error');
       document.getElementById('fMeaning').classList.remove('error');
       document.getElementById('fTerm').focus();
@@ -304,6 +305,7 @@
     document.getElementById('fExample').value = e.example || '';
     document.getElementById('fTags').value = (e.tags || []).join(', ');
     document.getElementById('saveBtn').textContent = 'Salvar alterações';
+    document.getElementById('saveBtn').disabled = false;
     document.getElementById('formWrap').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
@@ -342,6 +344,7 @@
     } catch (e) {
       console.error(e);
       showToast('Erro ao salvar: ' + e.message, 'error');
+    } finally {
       btn.textContent = originalText;
       btn.disabled = false;
     }
