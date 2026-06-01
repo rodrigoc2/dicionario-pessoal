@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Meu Dicionário Pessoal2</title>
+<title>Meu Dicionário Pessoal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 <style>
@@ -31,12 +31,22 @@
 
   main { max-width: 860px; margin: 0 auto; padding: 1.25rem; }
 
-  .toolbar { display: flex; gap: 8px; margin-bottom: 1.25rem; }
-  .search-wrap { flex: 1; position: relative; min-width: 0; }
+  .toolbar { display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; }
+  .search-wrap { flex: 1; position: relative; min-width: 160px; }
   .search-wrap svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); width: 15px; height: 15px; color: var(--text3); pointer-events: none; }
   .search-input { width: 100%; padding: 9px 12px 9px 34px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; transition: border-color 0.15s; }
   .search-input:focus { outline: none; border-color: var(--accent); }
   .search-input::placeholder { color: var(--text3); }
+
+  .controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .select-ctrl { padding: 6px 10px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; }
+  .select-ctrl:focus { outline: none; border-color: var(--accent); }
+
+  .view-toggle { display: flex; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .view-btn { padding: 6px 12px; font-size: 13px; cursor: pointer; border: none; background: var(--surface); color: var(--text2); transition: all 0.15s; display: flex; align-items: center; gap: 5px; font-family: 'DM Sans', sans-serif; }
+  .view-btn:first-child { border-right: 1px solid var(--border); }
+  .view-btn.active { background: var(--surface2); color: var(--text); font-weight: 500; }
+  .view-btn:hover:not(.active) { background: var(--surface2); }
 
   .btn { padding: 9px 16px; border-radius: var(--radius); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid var(--border); background: var(--surface); color: var(--text); transition: all 0.15s; white-space: nowrap; }
   .btn:hover { background: var(--surface2); }
@@ -47,7 +57,7 @@
   .btn-danger { color: var(--danger); border-color: #e8c0c0; }
   .btn-danger:hover { background: var(--danger-light); }
 
-  .tabs { display: flex; gap: 6px; margin-bottom: 1.25rem; flex-wrap: wrap; }
+  .tabs { display: flex; gap: 6px; margin-bottom: 1rem; flex-wrap: wrap; }
   .tab { padding: 6px 13px; border-radius: 20px; font-size: 13px; cursor: pointer; border: 1px solid var(--border); background: var(--surface); color: var(--text2); transition: all 0.15s; }
   .tab:hover { border-color: #c0bab2; }
   .tab.active-all { background: var(--text); color: white; border-color: var(--text); }
@@ -55,10 +65,10 @@
   .tab.active-en-word { background: var(--blue); color: white; border-color: var(--blue); }
   .tab.active-en-expr { background: var(--purple); color: white; border-color: var(--purple); }
 
+  /* FORM */
   .form-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1.25rem; animation: slideDown 0.2s ease; }
   @keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
   .form-card h3 { font-family: 'Lora', serif; font-size: 16px; font-weight: 600; margin-bottom: 1rem; }
-
   .form-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .form-group label { font-size: 11px; font-weight: 500; color: var(--text2); letter-spacing: 0.04em; text-transform: uppercase; }
@@ -68,6 +78,7 @@
   .form-group input.error, .form-group textarea.error { border-color: var(--danger); }
   .form-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
 
+  /* CARD VIEW */
   .entries { display: flex; flex-direction: column; gap: 10px; }
   .entry-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.1rem 1.25rem; transition: box-shadow 0.15s, border-color 0.15s; animation: fadeIn 0.2s ease; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
@@ -84,6 +95,25 @@
   .entry-tags { display: flex; gap: 5px; flex-wrap: wrap; }
   .tag { font-size: 11px; color: var(--text3); background: var(--surface2); border: 1px solid var(--border); padding: 2px 8px; border-radius: 20px; }
   .entry-actions { display: flex; gap: 6px; }
+  .entry-meta { font-size: 11px; color: var(--text3); margin-top: 8px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .entry-meta span { display: flex; align-items: center; gap: 4px; }
+
+  /* COMPACT VIEW */
+  .compact-list { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; background: var(--surface); }
+  .compact-item { border-bottom: 1px solid var(--border); transition: background 0.1s; }
+  .compact-item:last-child { border-bottom: none; }
+  .compact-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; cursor: pointer; gap: 10px; user-select: none; }
+  .compact-header:hover { background: var(--surface2); }
+  .compact-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .compact-term { font-family: 'Lora', serif; font-size: 15px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .compact-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .compact-chevron { font-size: 12px; color: var(--text3); transition: transform 0.2s; }
+  .compact-item.open .compact-chevron { transform: rotate(180deg); }
+  .compact-body { display: none; padding: 0 16px 14px; border-top: 1px solid var(--border); background: var(--surface); }
+  .compact-item.open .compact-body { display: block; }
+  .compact-meaning { font-size: 14px; color: var(--text2); margin-top: 10px; line-height: 1.65; }
+  .compact-example { font-family: 'Lora', serif; font-style: italic; font-size: 13px; color: var(--text3); margin-top: 8px; line-height: 1.6; padding-left: 11px; border-left: 2px solid var(--border); }
+  .compact-actions { display: flex; gap: 6px; margin-top: 10px; }
 
   .empty { text-align: center; padding: 4rem 1rem; color: var(--text3); }
   .empty-icon { font-size: 36px; margin-bottom: 10px; opacity: 0.4; }
@@ -102,6 +132,7 @@
     .header-stats { gap: 10px; }
     .hstat-label { display: none; }
     .form-row { grid-template-columns: 1fr; }
+    .controls { gap: 6px; }
   }
 </style>
 </head>
@@ -131,11 +162,33 @@
     <button class="btn btn-primary" onclick="toggleForm()">+ Adicionar</button>
   </div>
 
-  <div class="tabs">
-    <button class="tab active-all" id="tab-all" onclick="setTab('all')">Tudo</button>
-    <button class="tab" id="tab-pt-expr" onclick="setTab('pt-expr')">Expressões PT</button>
-    <button class="tab" id="tab-en-word" onclick="setTab('en-word')">Palavras EN</button>
-    <button class="tab" id="tab-en-expr" onclick="setTab('en-expr')">Expressões EN</button>
+  <div class="controls">
+    <select class="select-ctrl" id="sortSelect" onchange="renderEntries()">
+      <option value="created_desc">↓ Data de cadastro</option>
+      <option value="created_asc">↑ Data de cadastro</option>
+      <option value="updated_desc">↓ Última edição</option>
+      <option value="updated_asc">↑ Última edição</option>
+      <option value="alpha_asc">A → Z</option>
+      <option value="alpha_desc">Z → A</option>
+    </select>
+
+    <div class="view-toggle">
+      <button class="view-btn active" id="btnViewFull" onclick="setView('full')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="5" rx="1"/><rect x="3" y="10" width="18" height="5" rx="1"/><rect x="3" y="17" width="18" height="5" rx="1"/></svg>
+        Completo
+      </button>
+      <button class="view-btn" id="btnViewCompact" onclick="setView('compact')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        Compacto
+      </button>
+    </div>
+
+    <div class="tabs" style="margin:0;">
+      <button class="tab active-all" id="tab-all" onclick="setTab('all')">Tudo</button>
+      <button class="tab" id="tab-pt-expr" onclick="setTab('pt-expr')">Expr. PT</button>
+      <button class="tab" id="tab-en-word" onclick="setTab('en-word')">Palavras EN</button>
+      <button class="tab" id="tab-en-expr" onclick="setTab('en-expr')">Expr. EN</button>
+    </div>
   </div>
 
   <div id="formWrap" style="display:none;">
@@ -185,6 +238,7 @@
 
   let allEntries = [];
   let currentTab = 'all';
+  let currentView = 'full';
   let editingId = null;
 
   async function api(method, path, body) {
@@ -194,19 +248,11 @@
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     };
-    if (method === 'POST' || method === 'PATCH') {
-      headers['Prefer'] = 'return=representation';
-    }
+    if (method === 'POST' || method === 'PATCH') headers['Prefer'] = 'return=representation';
     const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
-      method: method,
-      headers: headers,
-      body: body ? JSON.stringify(body) : undefined
+      method, headers, body: body ? JSON.stringify(body) : undefined
     });
-    if (!res.ok) {
-      const err = await res.text();
-      console.error('Supabase error:', res.status, err);
-      throw new Error('Status ' + res.status + ': ' + err);
-    }
+    if (!res.ok) { const err = await res.text(); throw new Error('Status ' + res.status + ': ' + err); }
     const text = await res.text();
     return text ? JSON.parse(text) : null;
   }
@@ -238,6 +284,30 @@
     renderEntries();
   }
 
+  function setView(view) {
+    currentView = view;
+    document.getElementById('btnViewFull').classList.toggle('active', view === 'full');
+    document.getElementById('btnViewCompact').classList.toggle('active', view === 'compact');
+    renderEntries();
+  }
+
+  function sortEntries(list) {
+    const sort = document.getElementById('sortSelect').value;
+    return [...list].sort((a, b) => {
+      if (sort === 'alpha_asc') return a.term.localeCompare(b.term, 'pt');
+      if (sort === 'alpha_desc') return b.term.localeCompare(a.term, 'pt');
+      if (sort === 'updated_desc') return new Date(b.updated_at || b.created_at) - new Date(a.updated_at || a.created_at);
+      if (sort === 'updated_asc') return new Date(a.updated_at || a.created_at) - new Date(b.updated_at || b.created_at);
+      if (sort === 'created_asc') return new Date(a.created_at) - new Date(b.created_at);
+      return new Date(b.created_at) - new Date(a.created_at);
+    });
+  }
+
+  function fmtDate(dt) {
+    if (!dt) return '—';
+    return new Date(dt).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  }
+
   function renderEntries() {
     const search = document.getElementById('searchInput').value.toLowerCase().trim();
     let list = allEntries;
@@ -248,18 +318,46 @@
       (e.example || '').toLowerCase().includes(search) ||
       (e.tags || []).some(t => t.toLowerCase().includes(search))
     );
+    list = sortEntries(list);
     const el = document.getElementById('entriesList');
     if (list.length === 0) {
       el.innerHTML = '<div class="empty"><div class="empty-icon">📖</div><p>' + (search || currentTab !== 'all' ? 'Nenhuma entrada encontrada.' : 'Seu dicionário está vazio. Adicione a primeira entrada!') + '</p></div>';
       return;
     }
+    if (currentView === 'compact') renderCompact(list, el);
+    else renderFull(list, el);
+  }
+
+  function badgeClass(type) { return type === 'pt-expr' ? 'badge-pt' : type === 'en-word' ? 'badge-en-word' : 'badge-en-expr'; }
+  function badgeLabel(type) { return type === 'pt-expr' ? 'Expressão PT' : type === 'en-word' ? 'Palavra EN' : 'Expressão EN'; }
+
+  function renderFull(list, el) {
+    el.className = 'entries';
     el.innerHTML = list.map(e => {
-      const bc = e.type === 'pt-expr' ? 'badge-pt' : e.type === 'en-word' ? 'badge-en-word' : 'badge-en-expr';
-      const bl = e.type === 'pt-expr' ? 'Expressão PT' : e.type === 'en-word' ? 'Palavra EN' : 'Expressão EN';
       const tags = (e.tags || []).map(t => '<span class="tag">' + t + '</span>').join('');
       const example = e.example ? '<div class="entry-example">"' + e.example + '"</div>' : '';
-      return '<div class="entry-card"><div class="entry-top"><div class="entry-term">' + e.term + '</div><span class="badge ' + bc + '">' + bl + '</span></div><div class="entry-meaning">' + e.meaning + '</div>' + example + '<div class="entry-footer"><div class="entry-tags">' + tags + '</div><div class="entry-actions"><button class="btn btn-sm" onclick="editEntry(\'' + e.id + '\')">Editar</button><button class="btn btn-sm btn-danger" onclick="deleteEntry(\'' + e.id + '\')">Remover</button></div></div></div>';
+      const meta = '<div class="entry-meta"><span>📅 Cadastro: ' + fmtDate(e.created_at) + '</span>' + (e.updated_at ? '<span>✏️ Edição: ' + fmtDate(e.updated_at) + '</span>' : '') + '</div>';
+      return '<div class="entry-card"><div class="entry-top"><div class="entry-term">' + e.term + '</div><span class="badge ' + badgeClass(e.type) + '">' + badgeLabel(e.type) + '</span></div><div class="entry-meaning">' + e.meaning + '</div>' + example + (tags ? '<div class="entry-tags" style="margin-top:8px;">' + tags + '</div>' : '') + meta + '<div class="entry-footer"><div></div><div class="entry-actions"><button class="btn btn-sm" onclick="editEntry(\'' + e.id + '\')">Editar</button><button class="btn btn-sm btn-danger" onclick="deleteEntry(\'' + e.id + '\')">Remover</button></div></div></div>';
     }).join('');
+  }
+
+  function renderCompact(list, el) {
+    el.className = '';
+    el.innerHTML = '<div class="compact-list">' + list.map(e => {
+      const tags = (e.tags || []).map(t => '<span class="tag">' + t + '</span>').join('');
+      const example = e.example ? '<div class="compact-example">"' + e.example + '"</div>' : '';
+      const meta = '<div class="entry-meta" style="margin-top:8px;"><span>📅 ' + fmtDate(e.created_at) + '</span>' + (e.updated_at ? '<span>✏️ ' + fmtDate(e.updated_at) + '</span>' : '') + '</div>';
+      return '<div class="compact-item" id="ci-' + e.id + '"><div class="compact-header" onclick="toggleCompact(\'' + e.id + '\')">' +
+        '<div class="compact-left"><span class="compact-term">' + e.term + '</span><span class="badge ' + badgeClass(e.type) + '">' + badgeLabel(e.type) + '</span></div>' +
+        '<div class="compact-right"><span class="compact-chevron">▼</span></div></div>' +
+        '<div class="compact-body"><div class="compact-meaning">' + e.meaning + '</div>' + example + (tags ? '<div class="entry-tags" style="margin-top:8px;">' + tags + '</div>' : '') + meta +
+        '<div class="compact-actions"><button class="btn btn-sm" onclick="editEntry(\'' + e.id + '\')">Editar</button><button class="btn btn-sm btn-danger" onclick="deleteEntry(\'' + e.id + '\')">Remover</button></div></div></div>';
+    }).join('') + '</div>';
+  }
+
+  function toggleCompact(id) {
+    const item = document.getElementById('ci-' + id);
+    if (item) item.classList.toggle('open');
   }
 
   function showLoading() {
@@ -283,9 +381,7 @@
       document.getElementById('fMeaning').classList.remove('error');
       document.getElementById('fTerm').focus();
       wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    } else {
-      cancelForm();
-    }
+    } else { cancelForm(); }
   }
 
   function cancelForm() {
@@ -342,7 +438,6 @@
       updateStats();
       renderEntries();
     } catch (e) {
-      console.error(e);
       showToast('Erro ao salvar: ' + e.message, 'error');
     } finally {
       btn.textContent = originalText;
@@ -358,9 +453,7 @@
       updateStats();
       renderEntries();
       showToast('Entrada removida.', 'success');
-    } catch (e) {
-      showToast('Erro ao remover.', 'error');
-    }
+    } catch (e) { showToast('Erro ao remover.', 'error'); }
   }
 
   function showToast(msg, type) {
